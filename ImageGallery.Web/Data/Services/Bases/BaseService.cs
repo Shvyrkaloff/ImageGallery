@@ -16,7 +16,7 @@ public abstract class BaseService<TEntity> : IBaseService<TEntity>
     /// <summary>
     /// The HTTP client
     /// </summary>
-    private readonly HttpClient? _httpClient;
+    protected readonly HttpClient? _httpClient;
 
     /// <summary>
     /// The cache

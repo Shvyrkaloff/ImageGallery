@@ -1,6 +1,8 @@
 ﻿using ImageGallery.Api.Controllers.Bases;
 using ImageGallery.Application.Entities.Users.Domains;
 using ImageGallery.Application.Entities.Users.Interfaces;
+using ImageGallery.Application.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ImageGallery.Api.Controllers;
 
@@ -11,10 +13,13 @@ namespace ImageGallery.Api.Controllers;
 /// <seealso cref="ImageGallery.Api.Controllers.Bases.BaseController{ImageGallery.Application.Entities.Users.Domains.User, ImageGallery.Application.Entities.Users.Interfaces.IUserRepository}" />
 public class UserController : BaseController<User, IUserRepository>
 {
+    /// <summary>
+    /// The user repository
+    /// </summary>
     private readonly IUserRepository _userRepository;
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="UserController"/> class.
+    /// Initializes a new instance of the <see cref="UserController" /> class.
     /// </summary>
     /// <param name="repository">The repository.</param>
     /// <param name="env">The env.</param>

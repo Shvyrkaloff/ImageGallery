@@ -10,5 +10,5 @@ namespace ImageGallery.Application.Entities.Users.Interfaces;
 /// <seealso cref="ImageGallery.Application.Entities.Bases.Interfaces.IBaseRepository{ImageGallery.Application.Entities.Users.Domains.User}" />
 public interface IUserRepository : IBaseRepository<User>
 {
-
+    
 }
