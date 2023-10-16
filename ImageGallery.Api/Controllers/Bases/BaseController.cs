@@ -1,6 +1,7 @@
 ﻿using ImageGallery.Application.Bases.Interfaces.IHaves;
 using ImageGallery.Application.Entities.Bases.Filters;
 using ImageGallery.Application.Entities.Bases.Interfaces;
+using ImageGallery.Application.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ImageGallery.Api.Controllers.Bases;
@@ -173,5 +174,16 @@ public class BaseController<TEntity, TRepository> : ControllerBase
         }
         else
             return NotFound();
+    }
+
+    /// <summary>
+    /// Adds the friendship.
+    /// </summary>
+    /// <param name="friendModel">The friend model.</param>
+    [HttpPost("AddFriendship")]
+    public async Task<IActionResult> AddFriendship([FromBody] FriendModel friendModel)
+    {
+        var result = await _repository.AddFriendshipAsync(friendModel.FirstFriendId, friendModel.SecondFriendId);
+        return Ok();
     }
 }

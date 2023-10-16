@@ -1,10 +1,9 @@
 ﻿using ImageGallery.Application.Context;
-using ImageGallery.Application.Entities.Bases.Filters;
 using ImageGallery.Application.Entities.Bases.Repositories;
+using ImageGallery.Application.Entities.FriendUsers.Domains;
 using ImageGallery.Application.Entities.Users.Domains;
 using ImageGallery.Application.Entities.Users.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Query;
 
 namespace ImageGallery.Application.Entities.Users.Repositories;
 
@@ -17,10 +16,13 @@ namespace ImageGallery.Application.Entities.Users.Repositories;
 /// <seealso cref="IUserRepository" />
 public class UserRepository : BaseRepository<User>, IUserRepository
 {
+    /// <summary>
+    /// The context
+    /// </summary>
     private readonly IImageGalleryContext _context;
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="UserRepository"/> class.
+    /// Initializes a new instance of the <see cref="UserRepository" /> class.
     /// </summary>
     /// <param name="context">The context.</param>
     public UserRepository(IImageGalleryContext context) : base((DbContext)context)

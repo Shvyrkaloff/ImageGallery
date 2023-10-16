@@ -2,6 +2,8 @@
 using ImageGallery.Application.Bases.Interfaces.IHaves;
 using ImageGallery.Application.Entities.Bases.Filters;
 using ImageGallery.Application.Entities.Bases.Interfaces;
+using ImageGallery.Application.Entities.FriendUsers.Domains;
+using ImageGallery.Application.Entities.Users.Domains;
 using Microsoft.EntityFrameworkCore;
 
 namespace ImageGallery.Application.Entities.Bases.Repositories;
@@ -112,5 +114,39 @@ public abstract class BaseRepository<T> : IBaseRepository<T>
     {
         Context.Set<T>().Remove(entity);
         await Context.SaveChangesAsync();
+    }
+
+    /// <summary>
+    /// Add friendship as an asynchronous operation.
+    /// </summary>
+    /// <param name="firstFriendId">The first friend identifier.</param>
+    /// <param name="secondFriendId">The second friend identifier.</param>
+    /// <returns>A Task&lt;System.Boolean&gt; representing the asynchronous operation.</returns>
+    public async Task<bool> AddFriendshipAsync(int firstFriendId, int secondFriendId)
+    {
+        try
+        {
+            var firstFriend = await Context.Set<User>().FindAsync(firstFriendId);
+            var secondFriend = await Context.Set<User>().FindAsync(secondFriendId);
+
+            if (firstFriend != null && secondFriend != null)
+            {
+                var friendUser = new FriendUser
+                {
+                    FirstFriend = firstFriend,
+                    SecondFriend = secondFriend
+                };
+
+                Context.Set<FriendUser>().Add(friendUser);
+                await Context.SaveChangesAsync();
+                return true;
+            }
+
+            return false;
+        }
+        catch (Exception ex)
+        {
+            return false;
+        }
     }
 }

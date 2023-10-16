@@ -84,6 +84,8 @@ public class ImageGalleryDbContext : DbContext, IImageGalleryContext
     /// </summary>
     /// <value>The users.</value>
     public DbSet<User> Users { get; set; }
+
+    public DbSet<FriendUser> FriendUsers { get; set; }
 }
 
 /// <summary>

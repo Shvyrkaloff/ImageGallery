@@ -1,0 +1,23 @@
+﻿@page "/friends-list"
+
+<PageTitle>Список пользователей</PageTitle>
+
+<div class="card">
+    <div class="card-header">Users</div>
+    <ul class="list-group list-group-flush">
+        @foreach (var user in Users)
+        {
+            <li class="list-group-item">
+                @user.Name
+            </li>
+            <Divider/>
+            <div>
+                <Button @onclick="() => AddFriend(user)">Add friend</Button>
+            </div>
+        }
+    </ul>
+</div>
+
+@code {
+
+}

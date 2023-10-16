@@ -1,4 +1,5 @@
 ﻿using ImageGallery.Application.Entities.Files.Domains;
+using ImageGallery.Application.Entities.FriendUsers.Domains;
 using ImageGallery.Application.Entities.Users.Domains;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,4 +21,11 @@ public interface IImageGalleryContext
     /// </summary>
     /// <value>The users.</value>
     public DbSet<User> Users { get; set; }
+
+    /// <summary>
+    /// Gets or sets the friends user.
+    /// </summary>
+    /// <value>The friends user.</value>
+    public DbSet<FriendUser> FriendUsers { get; set; }
+
 }

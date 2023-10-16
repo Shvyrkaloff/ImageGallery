@@ -20,9 +20,4 @@
     <PackageReference Include="ZaidFlix.Service.HttpService" Version="1.0.6" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Entities\FriendUsers\Interfaces\" />
-    <Folder Include="Entities\FriendUsers\Repositories\" />
-  </ItemGroup>
-
 </Project>
