@@ -6,28 +6,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ImageGallery.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class INITIAL : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "Friends",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserCreated = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
-                    UserUpdated = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
-                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Friends", x => x.Id);
-                });
-
             migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
@@ -50,21 +33,21 @@ namespace ImageGallery.Persistence.Migrations
                 name: "FriendUser",
                 columns: table => new
                 {
-                    FriendId = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false)
+                    FirstFriendId = table.Column<int>(type: "int", nullable: false),
+                    SecondFriendId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_FriendUser", x => new { x.FriendId, x.UserId });
+                    table.PrimaryKey("PK_FriendUser", x => new { x.FirstFriendId, x.SecondFriendId });
                     table.ForeignKey(
-                        name: "FK_FriendUser_Friends_FriendId",
-                        column: x => x.FriendId,
-                        principalTable: "Friends",
+                        name: "FK_FriendUser_Users_FirstFriendId",
+                        column: x => x.FirstFriendId,
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_FriendUser_Users_UserId",
-                        column: x => x.UserId,
+                        name: "FK_FriendUser_Users_SecondFriendId",
+                        column: x => x.SecondFriendId,
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -95,9 +78,9 @@ namespace ImageGallery.Persistence.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_FriendUser_UserId",
+                name: "IX_FriendUser_SecondFriendId",
                 table: "FriendUser",
-                column: "UserId");
+                column: "SecondFriendId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ImageFiles_OwnerId",
@@ -113,9 +96,6 @@ namespace ImageGallery.Persistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "ImageFiles");
-
-            migrationBuilder.DropTable(
-                name: "Friends");
 
             migrationBuilder.DropTable(
                 name: "Users");

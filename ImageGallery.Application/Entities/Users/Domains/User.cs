@@ -51,12 +51,18 @@ public class User : BaseUserCu, IHaveId, IHaveName, IBaseUser
     /// Gets the image files.
     /// </summary>
     /// <value>The image files.</value>
-    //[JsonIgnore]
+    [JsonIgnore]
     public virtual IReadOnlyCollection<ImageFile>? ImageFiles => _imageFiles;
 
     /// <summary>
-    /// Gets or sets the friend users.
+    /// Gets or sets the first friend users.
     /// </summary>
-    /// <value>The friend users.</value>
-    public virtual List<FriendUser>? FriendUsers { get; set; }
+    /// <value>The first friend users.</value>
+    public virtual List<FriendUser>? FirstFriendUsers { get; set; }
+
+    /// <summary>
+    /// Gets or sets the second friend users.
+    /// </summary>
+    /// <value>The second friend users.</value>
+    public virtual List<FriendUser>? SecondFriendUsers { get; set; }
 }
