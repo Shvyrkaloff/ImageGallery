@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ImageGallery.Persistence.Migrations
 {
     [DbContext(typeof(ImageGalleryDbContext))]
-    [Migration("20231015180809_Initial")]
-    partial class Initial
+    [Migration("20231016201219_INITIAL")]
+    partial class INITIAL
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -68,47 +68,17 @@ namespace ImageGallery.Persistence.Migrations
 
             modelBuilder.Entity("ImageGallery.Application.Entities.FriendUsers.Domains.FriendUser", b =>
                 {
-                    b.Property<int>("FriendId")
+                    b.Property<int>("FirstFriendId")
                         .HasColumnType("int");
 
-                    b.Property<int>("UserId")
+                    b.Property<int>("SecondFriendId")
                         .HasColumnType("int");
 
-                    b.HasKey("FriendId", "UserId");
+                    b.HasKey("FirstFriendId", "SecondFriendId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("SecondFriendId");
 
                     b.ToTable("FriendUser");
-                });
-
-            modelBuilder.Entity("ImageGallery.Application.Entities.Friends.Domains.Friend", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime?>("DateCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DateUpdated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserCreated")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
-                    b.Property<string>("UserUpdated")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Friends");
                 });
 
             modelBuilder.Entity("ImageGallery.Application.Entities.Users.Domains.User", b =>
@@ -155,33 +125,30 @@ namespace ImageGallery.Persistence.Migrations
 
             modelBuilder.Entity("ImageGallery.Application.Entities.FriendUsers.Domains.FriendUser", b =>
                 {
-                    b.HasOne("ImageGallery.Application.Entities.Friends.Domains.Friend", "Friend")
-                        .WithMany("FriendUsers")
-                        .HasForeignKey("FriendId")
+                    b.HasOne("ImageGallery.Application.Entities.Users.Domains.User", "FirstFriend")
+                        .WithMany("FirstFriendUsers")
+                        .HasForeignKey("FirstFriendId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("ImageGallery.Application.Entities.Users.Domains.User", "User")
-                        .WithMany("FriendUsers")
-                        .HasForeignKey("UserId")
+                    b.HasOne("ImageGallery.Application.Entities.Users.Domains.User", "SecondFriend")
+                        .WithMany("SecondFriendUsers")
+                        .HasForeignKey("SecondFriendId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("Friend");
+                    b.Navigation("FirstFriend");
 
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("ImageGallery.Application.Entities.Friends.Domains.Friend", b =>
-                {
-                    b.Navigation("FriendUsers");
+                    b.Navigation("SecondFriend");
                 });
 
             modelBuilder.Entity("ImageGallery.Application.Entities.Users.Domains.User", b =>
                 {
-                    b.Navigation("FriendUsers");
+                    b.Navigation("FirstFriendUsers");
 
                     b.Navigation("ImageFiles");
+
+                    b.Navigation("SecondFriendUsers");
                 });
 #pragma warning restore 612, 618
         }

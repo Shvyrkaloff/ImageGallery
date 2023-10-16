@@ -1,5 +1,4 @@
-﻿using ImageGallery.Application.Entities.Friends.Domains;
-using ImageGallery.Application.Entities.Users.Domains;
+﻿using ImageGallery.Application.Entities.Users.Domains;
 
 namespace ImageGallery.Application.Entities.FriendUsers.Domains;
 
@@ -9,28 +8,28 @@ namespace ImageGallery.Application.Entities.FriendUsers.Domains;
 public class FriendUser
 {
     /// <summary>
-    /// Gets or sets the friend identifier.
+    /// Gets or sets the first friend identifier.
     /// </summary>
-    /// <value>The friend identifier.</value>
-    public int FriendId { get; set; }
+    /// <value>The first friend identifier.</value>
+    public int FirstFriendId { get; set; }
 
     /// <summary>
-    /// Gets or sets the friend.
+    /// Gets or sets the first friend.
     /// </summary>
-    /// <value>The friend.</value>
-    public virtual Friend Friend { get; set; }
+    /// <value>The first friend.</value>
+    public virtual User FirstFriend { get; set; }
 
     /// <summary>
-    /// Gets or sets the user identifier.
+    /// Gets or sets the second friend identifier.
     /// </summary>
-    /// <value>The user identifier.</value>
-    public int UserId { get; set; }
+    /// <value>The second friend identifier.</value>
+    public int SecondFriendId { get; set; }
 
     /// <summary>
-    /// Gets or sets the user.
+    /// Gets or sets the second friend.
     /// </summary>
-    /// <value>The user.</value>
-    public virtual User User { get; set; }
+    /// <value>The second friend.</value>
+    public virtual User SecondFriend { get; set; }
 
     /// <summary>
     /// Gets the description.

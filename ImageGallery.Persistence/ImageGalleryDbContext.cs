@@ -1,6 +1,5 @@
 ﻿using ImageGallery.Application.Context;
 using ImageGallery.Application.Entities.Files.Domains;
-using ImageGallery.Application.Entities.Friends.Domains;
 using ImageGallery.Application.Entities.FriendUsers.Domains;
 using ImageGallery.Application.Entities.Users.Domains;
 using Microsoft.EntityFrameworkCore;
@@ -81,12 +80,6 @@ public class ImageGalleryDbContext : DbContext, IImageGalleryContext
     public DbSet<ImageFile> ImageFiles { get; set; }
 
     /// <summary>
-    /// Gets or sets the friends.
-    /// </summary>
-    /// <value>The friends.</value>
-    public DbSet<Friend> Friends { get; set; }
-
-    /// <summary>
     /// Gets or sets the users.
     /// </summary>
     /// <value>The users.</value>
@@ -106,16 +99,16 @@ public class FriendUserConfiguration : IEntityTypeConfiguration<FriendUser>
     /// <param name="builder">The builder to be used to configure the entity type.</param>
     public void Configure(EntityTypeBuilder<FriendUser> builder)
     {
-        builder.HasKey(fu => new { fu.FriendId, fu.UserId });
+        builder.HasKey(fu => new { fu.FirstFriendId, fu.SecondFriendId });
 
-        builder.HasOne(fu => fu.Friend)
-            .WithMany(u => u.FriendUsers)
-            .HasForeignKey(fu => fu.FriendId)
+        builder.HasOne(fu => fu.FirstFriend)
+            .WithMany(u => u.FirstFriendUsers)
+            .HasForeignKey(fu => fu.FirstFriendId)
             .OnDelete(DeleteBehavior.Restrict);
 
-        builder.HasOne(fu => fu.User)
-            .WithMany(u => u.FriendUsers)
-            .HasForeignKey(fu => fu.UserId)
+        builder.HasOne(fu => fu.SecondFriend)
+            .WithMany(u => u.SecondFriendUsers)
+            .HasForeignKey(fu => fu.SecondFriendId)
             .OnDelete(DeleteBehavior.Restrict);
     }
 }
