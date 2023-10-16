@@ -1,0 +1,42 @@
+﻿@page "/register"
+
+<PageTitle>Регистрация</PageTitle>
+
+<br />
+
+<div class="container-fluid">
+    <Loading Spinning="_isLoading">
+        <AuthorizeView Context="account">
+            <NotAuthorized>
+                <Card Title=@("СОЗДАНИЕ ПОЛЬЗОВАТЕЛЯ")>
+                    <Form Model="LoginFormModel" Context="login">
+                        <Row Gutter="24">
+                            <GridCol Span="24">
+                                <FormItem Label="Логин">
+                                    <Input @bind-Value="LoginFormModel.Username"></Input>
+                                </FormItem>
+                                <FormItem Label="Пароль">
+                                    <Input Type="password" @bind-Value="LoginFormModel.Password"></Input>
+                                </FormItem>
+                            </GridCol>
+                        </Row>
+                        <Row Gutter="24" Justify="end">
+                            <GridCol>
+                                <FormItem>
+                                    <button type="button" class="btn btn-primary" @onclick="Registration">Зарегистрироваться</button>
+                                </FormItem>
+                            </GridCol>
+                        </Row>
+                    </Form>
+                </Card>
+            </NotAuthorized>
+            <Authorized>
+
+            </Authorized>
+            <Authorizing>
+                <Spin />
+                Идет процесс авторизации...
+            </Authorizing>
+        </AuthorizeView>
+    </Loading>
+</div>

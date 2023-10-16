@@ -1,0 +1,28 @@
+﻿@inherits LayoutComponentBase
+
+<PageTitle>ImageGallery.Web</PageTitle>
+
+<div class="page">
+    <div class="sidebar">
+        <NavMenu />
+    </div>
+
+    <main>
+        <div class="top-row px-4">
+            <AuthorizeView Context="account">
+                <NotAuthorized>
+                    <a href="/register" target="_blank">Регистрация</a>
+                    <a href="/login" target="_blank">Вход</a>
+                </NotAuthorized>
+                <Authorized>
+                    <p>@AuthenticationService.AuthorizedUser?.Name</p>
+                    <a href="/login" target="_blank">Выйти</a>
+                </Authorized>
+            </AuthorizeView>
+        </div>
+
+        <article class="content px-4">
+            @Body
+        </article>
+    </main>
+</div>
