@@ -3,7 +3,7 @@ using ImageGallery.Web.Data.Authentication;
 using ImageGallery.Web.Data.Services;
 using Microsoft.AspNetCore.Components.Authorization;
 
-namespace MentorsDiary.Web.DependencyInjection;
+namespace ImageGallery.Web.DependencyInjection;
 
 /// <summary>
 /// Class WebServiceCollectionExtensions.
@@ -22,6 +22,7 @@ public static class WebServiceCollectionExtensions
         serviceCollection.AddSingleton<AuthenticationService>();
         serviceCollection.AddSingleton<UserService>();
         serviceCollection.AddSingleton<ImageFileService>();
+        serviceCollection.AddSingleton<FriendUserService>();
 
         #endregion
 

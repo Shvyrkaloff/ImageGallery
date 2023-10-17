@@ -73,4 +73,12 @@ public interface IBaseRepository<T>
     /// <param name="secondFriendId">The second friend identifier.</param>
     /// <returns>Task&lt;System.Boolean&gt;.</returns>
     Task<bool> AddFriendshipAsync(int firstFriendId, int secondFriendId);
+
+    /// <summary>
+    /// Removes the friendship asynchronous.
+    /// </summary>
+    /// <param name="firstFriendId">The first friend identifier.</param>
+    /// <param name="secondFriendId">The second friend identifier.</param>
+    /// <returns>Task&lt;System.Boolean&gt;.</returns>
+    Task<bool> RemoveFriendshipAsync(int firstFriendId, int secondFriendId);
 }

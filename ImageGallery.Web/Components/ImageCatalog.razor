@@ -2,7 +2,20 @@
 
 <PageTitle>Галерея</PageTitle>
 
-@foreach (var imageFile in ImageFiles)
-{
-    <img src="@imageFile.FilePath" alt="@imageFile.Name" style="max-width: 200px; max-height: 200px; margin: 10px;" />
-}
+<AuthorizeView Context="catalog">
+    <NotAuthorized>
+        Нет доступа.
+    </NotAuthorized>
+    <Authorized>
+        <Loading Spinning="_isLoading">
+            @foreach (var imageFile in ImageFiles)
+            {
+                <div style="border: black 1px solid">
+                    <img src="@imageFile.FilePath" alt="@imageFile.Name" style="max-width: 200px; max-height: 200px; margin: 10px;" />
+                    <p>Добавил: @imageFile.UserCreated</p>
+                    <p>Время добавления: @imageFile.DateCreated</p>
+                </div>
+            }
+        </Loading>
+    </Authorized>
+</AuthorizeView>

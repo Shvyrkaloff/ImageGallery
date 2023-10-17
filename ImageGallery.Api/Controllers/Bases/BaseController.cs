@@ -180,10 +180,23 @@ public class BaseController<TEntity, TRepository> : ControllerBase
     /// Adds the friendship.
     /// </summary>
     /// <param name="friendModel">The friend model.</param>
+    /// <returns>IActionResult.</returns>
     [HttpPost("AddFriendship")]
     public async Task<IActionResult> AddFriendship([FromBody] FriendModel friendModel)
     {
         var result = await _repository.AddFriendshipAsync(friendModel.FirstFriendId, friendModel.SecondFriendId);
+        return Ok();
+    }
+
+    /// <summary>
+    /// Removes the friendship.
+    /// </summary>
+    /// <param name="friendModel">The friend model.</param>
+    /// <returns>IActionResult.</returns>
+    [HttpPost("RemoveFriendship")]
+    public async Task<IActionResult> RemoveFriendship([FromBody] FriendModel friendModel)
+    {
+        var result = await _repository.RemoveFriendshipAsync(friendModel.FirstFriendId, friendModel.SecondFriendId);
         return Ok();
     }
 }

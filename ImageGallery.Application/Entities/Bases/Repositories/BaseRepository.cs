@@ -23,7 +23,7 @@ public abstract class BaseRepository<T> : IBaseRepository<T>
     protected readonly DbContext Context;
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="BaseRepository{T}"/> class.
+    /// Initializes a new instance of the <see cref="BaseRepository{T}" /> class.
     /// </summary>
     /// <param name="context">The context.</param>
     protected BaseRepository(DbContext context)
@@ -139,6 +139,41 @@ public abstract class BaseRepository<T> : IBaseRepository<T>
 
                 Context.Set<FriendUser>().Add(friendUser);
                 await Context.SaveChangesAsync();
+                return true;
+            }
+
+            return false;
+        }
+        catch (Exception ex)
+        {
+            return false;
+        }
+    }
+
+    /// <summary>
+    /// Remove friendship as an asynchronous operation.
+    /// </summary>
+    /// <param name="firstFriendId">The first friend identifier.</param>
+    /// <param name="secondFriendId">The second friend identifier.</param>
+    /// <returns>A Task&lt;System.Boolean&gt; representing the asynchronous operation.</returns>
+    public async Task<bool> RemoveFriendshipAsync(int firstFriendId, int secondFriendId)
+    {
+        try
+        {
+            var firstFriend = await Context.Set<User>().FindAsync(firstFriendId);
+            var secondFriend = await Context.Set<User>().FindAsync(secondFriendId);
+
+            if (firstFriend != null && secondFriend != null)
+            {
+                var friendUser = new FriendUser
+                {
+                    FirstFriend = firstFriend,
+                    SecondFriend = secondFriend
+                };
+
+                Context.Set<FriendUser>().Remove(friendUser);
+                await Context.SaveChangesAsync();
+
                 return true;
             }
 
