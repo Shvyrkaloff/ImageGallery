@@ -1,5 +1,4 @@
 ﻿using ImageGallery.Application.Entities.Files.Domains;
-using ImageGallery.Application.Entities.Users.Domains;
 using ImageGallery.Web.Data.Services.Bases;
 using Microsoft.Extensions.Caching.Distributed;
 

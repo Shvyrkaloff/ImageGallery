@@ -1,5 +1,7 @@
 ﻿using ImageGallery.Application.Entities.Files.Interfaces;
 using ImageGallery.Application.Entities.Files.Repositories;
+using ImageGallery.Application.Entities.FriendUsers.Interfaces;
+using ImageGallery.Application.Entities.FriendUsers.Repositories;
 using ImageGallery.Application.Entities.Users.Interfaces;
 using ImageGallery.Application.Entities.Users.Repositories;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,6 +22,7 @@ public static class ApplicationServiceCollectionExtensions
     {
         serviceCollection.AddScoped<IImageFileRepository, ImageFileRepository>();
         serviceCollection.AddScoped<IUserRepository, UserRepository>();
+        serviceCollection.AddScoped<IFriendUserRepository, FriendUserRepository>();
         
         return serviceCollection;
     }

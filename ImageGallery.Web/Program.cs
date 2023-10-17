@@ -1,4 +1,4 @@
-using MentorsDiary.Web.DependencyInjection;
+using ImageGallery.Web.DependencyInjection;
 
 namespace ImageGallery.Web;
 

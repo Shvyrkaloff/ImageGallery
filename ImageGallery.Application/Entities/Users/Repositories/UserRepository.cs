@@ -1,6 +1,5 @@
 ﻿using ImageGallery.Application.Context;
 using ImageGallery.Application.Entities.Bases.Repositories;
-using ImageGallery.Application.Entities.FriendUsers.Domains;
 using ImageGallery.Application.Entities.Users.Domains;
 using ImageGallery.Application.Entities.Users.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -17,16 +16,10 @@ namespace ImageGallery.Application.Entities.Users.Repositories;
 public class UserRepository : BaseRepository<User>, IUserRepository
 {
     /// <summary>
-    /// The context
-    /// </summary>
-    private readonly IImageGalleryContext _context;
-
-    /// <summary>
     /// Initializes a new instance of the <see cref="UserRepository" /> class.
     /// </summary>
     /// <param name="context">The context.</param>
     public UserRepository(IImageGalleryContext context) : base((DbContext)context)
     {
-        _context = context;
     }
 }

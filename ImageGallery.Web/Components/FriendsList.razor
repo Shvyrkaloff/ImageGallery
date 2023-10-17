@@ -2,22 +2,46 @@
 
 <PageTitle>Список пользователей</PageTitle>
 
-<div class="card">
-    <div class="card-header">Users</div>
-    <ul class="list-group list-group-flush">
-        @foreach (var user in Users)
-        {
-            <li class="list-group-item">
-                @user.Name
-            </li>
-            <Divider/>
-            <div>
-                <Button @onclick="() => AddFriend(user)">Add friend</Button>
+<AuthorizeView Context="friends">
+    <NotAuthorized>
+        Нет доступа.
+    </NotAuthorized>
+    <Authorized>
+        <Loading Spinning="_isLoading">
+            <div class="card">
+                <div class="card-header">Users list</div>
+                <ul class="list-group list-group-flush">
+                    @foreach (var user in _users)
+                    {
+                        <li class="list-group-item">
+                            @user.Name
+                        </li>
+                        <Divider />
+                        <div>
+                            <Button @onclick="() => AddFriend(user)">Add friend</Button>
+                        </div>
+                    }
+                </ul>
             </div>
-        }
-    </ul>
-</div>
 
-@code {
+            <Divider />
 
-}
+            <div class="card">
+                <div class="card-header">Friends list</div>
+                <ul class="list-group list-group-flush">
+                    @foreach (var friend in _friends)
+                    {
+                        <li class="list-group-item">
+                            @friend.Name
+                        </li>
+                        <Divider />
+                        <div>
+                            <Button @onclick="() => DeleteFriend(friend)">Delete friend</Button>
+                        </div>
+                    }
+                </ul>
+            </div>
+
+        </Loading>
+    </Authorized>
+</AuthorizeView>

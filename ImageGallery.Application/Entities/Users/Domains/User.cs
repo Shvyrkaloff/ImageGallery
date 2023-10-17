@@ -58,11 +58,13 @@ public class User : BaseUserCu, IHaveId, IHaveName, IBaseUser
     /// Gets or sets the first friend users.
     /// </summary>
     /// <value>The first friend users.</value>
+    [JsonIgnore]
     public virtual List<FriendUser>? FirstFriendUsers { get; set; }
 
     /// <summary>
     /// Gets or sets the second friend users.
     /// </summary>
     /// <value>The second friend users.</value>
+    [JsonIgnore]
     public virtual List<FriendUser>? SecondFriendUsers { get; set; }
 }

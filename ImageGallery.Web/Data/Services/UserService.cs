@@ -37,4 +37,15 @@ public class UserService: BaseService<User>
         var responseMessage = await _httpClient?.PostAsJsonAsync($"api/user/AddFriendship", query)!;
         return responseMessage;
     }
+
+    /// <summary>
+    /// Remove friendship as an asynchronous operation.
+    /// </summary>
+    /// <param name="query">The query.</param>
+    /// <returns>A Task&lt;HttpResponseMessage&gt; representing the asynchronous operation.</returns>
+    public virtual async Task<HttpResponseMessage> RemoveFriendshipAsync(FriendModel query)
+    {
+        var responseMessage = await _httpClient?.PostAsJsonAsync($"api/user/RemoveFriendship", query)!;
+        return responseMessage;
+    }
 }

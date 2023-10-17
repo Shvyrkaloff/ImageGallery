@@ -1,11 +1,13 @@
-﻿using ImageGallery.Application.Entities.Users.Domains;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using ImageGallery.Application.Bases.Interfaces.IHaves;
+using ImageGallery.Application.Entities.Users.Domains;
 
 namespace ImageGallery.Application.Entities.FriendUsers.Domains;
 
 /// <summary>
 /// Class FriendUser.
 /// </summary>
-public class FriendUser
+public class FriendUser : IHaveId, IHaveName
 {
     /// <summary>
     /// Gets or sets the first friend identifier.
@@ -36,4 +38,18 @@ public class FriendUser
     /// </summary>
     /// <value>The description.</value>
     public string? Description { get; }
+
+    /// <summary>
+    /// Gets or sets the identifier.
+    /// </summary>
+    /// <value>The identifier.</value>
+    [NotMapped]
+    public int Id { get; set; }
+
+    /// <summary>
+    /// Gets or sets the name.
+    /// </summary>
+    /// <value>The name.</value>
+    [NotMapped]
+    public string? Name { get; set; }
 }
